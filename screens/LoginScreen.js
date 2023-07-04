@@ -1,25 +1,38 @@
-import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, TouchableOpacity, Text, TextInput } from 'react-native';
 
 const LoginScreen = ( {navigation} ) => {
   const handleLoginPress = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Home');
   };
 
-  const handleRegisterPress = () => {
-    navigation.navigate('Register');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = (value) => {
+    setPassword(value);
   };
 
   return(
     <View style={styles.container}>
     <Text style={styles.title}>Sign In</Text>
-      <TouchableOpacity style={styles.Textbox}>
-        <Text style={styles.TextboxText}>Email or phone number</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.Textbox}>
-        <Text style={styles.TextboxText}>Password</Text>
-      </TouchableOpacity>
-
+      <TextInput
+        style={styles.Textbox}
+        value={email}
+        onChangeText={handleEmailChange}
+        placeholder="Email or phone number"
+      />
+      <TextInput
+        style={styles.Textbox}
+        value={password}
+        onChangeText={handlePasswordChange}
+        placeholder="Password"
+      />
+      
       <TouchableOpacity
         style={styles.buttonlogin}
         onPress={handleLoginPress}
